@@ -4,11 +4,13 @@ import me.legrange.mikrotik.ApiConnection;
 import me.legrange.mikrotik.MikrotikApiException;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 
 import java.util.ArrayList;
 import java.util.List;
 
-
+@Configuration
+@ComponentScan("com.hobrum.mkadm")
 public class ConfigBase {
 
     public static void main(String[] args) throws MikrotikApiException {
@@ -19,6 +21,7 @@ public class ConfigBase {
 
         MikrotikUser mu = context.getBean("mikrotikUser", MikrotikUser.class);
 
+
         for (String l : ml.getIpMikrotikDevices()) {
 
             System.out.println(l);
@@ -26,11 +29,11 @@ public class ConfigBase {
             System.out.println(mu.getPasswordMikrotik());
             ///ip/hotspot/walled-garden/add action=allow dst-host=*yandex.ru
 
-            ApiConnection con = ApiConnection.connect(l);
-            con.login(mu.getUserMikrotik(), mu.getPasswordMikrotik());
+            //ApiConnection con = ApiConnection.connect(l);
+            //con.login(mu.getUserMikrotik(), mu.getPasswordMikrotik());
             //con.execute("/system/reboot");
-            con.execute("/ip/hotspot/walled-garden/add action=allow dst-host=*yandex.ru");
-            con.close();
+            //con.execute("/ip/hotspot/walled-garden/add action=allow dst-host=*yandex.ru");
+            //con.close();
         }
     }
 

@@ -7,7 +7,7 @@ import org.springframework.context.annotation.PropertySource;
 
 import java.util.List;
 
-@Configuration
+
 @ComponentScan("com.hobrum.mkadm")
 @PropertySource("classpath:mikrotik.properties")
 public class MikrotikList {
