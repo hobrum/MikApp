@@ -1,19 +1,17 @@
 package com.hobrum.mkadm;
 
-import me.legrange.mikrotik.ApiConnection;
 import me.legrange.mikrotik.MikrotikApiException;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Configuration
 @ComponentScan("com.hobrum.mkadm")
-public class ConfigBase {
+public class MikrotikCommand {
 
-    public static void main(String[] args) throws MikrotikApiException {
+
+
+    /*public static void main(String[] args) throws MikrotikApiException {
 
         AnnotationConfigApplicationContext context =
                 new AnnotationConfigApplicationContext(MikrotikList.class, MikrotikUser.class);
@@ -35,6 +33,6 @@ public class ConfigBase {
             //con.execute("/ip/hotspot/walled-garden/add action=allow dst-host=*yandex.ru");
             //con.close();
         }
-    }
+    }*/
 
 }
