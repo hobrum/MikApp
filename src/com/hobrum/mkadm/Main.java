@@ -13,10 +13,11 @@ public class Main {
         while (!isExit) {
 
             System.out.println("Доступные команды:");
+            System.out.println("list - Отобразить список устройств из файла mikrotik.properties.");
             System.out.println("reboot one - Перезагрузить одно устройство. " +
                     "Потребуется ввести ip адрес");
             System.out.println("reboot all - Перезагрузить все устройства," +
-                    " которые указаны в файле .properties");
+                    " которые указаны в файле mikrotik.properties");
             System.out.println("exit - завершить работу с программой");
             System.out.println("Введите команду: ");
 
@@ -39,9 +40,15 @@ public class Main {
                     isExit = true;
                     break;
 
+                case "list":
+                    MikrotikCommand mcList = new MikrotikCommand();
+                    mcList.listAllMikrotik();
+                    System.out.println();
+                    break;
+
                 default:
                     System.out.println("Команда не найдена");
-                    System.out.println("");
+                    System.out.println();
             }
 
         }

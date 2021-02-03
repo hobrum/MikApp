@@ -44,5 +44,18 @@ public class MikrotikCommand {
             con.close();
     }
 
+    public void listAllMikrotik() throws MikrotikApiException {
+
+        AnnotationConfigApplicationContext context =
+                new AnnotationConfigApplicationContext(MikrotikList.class);
+
+        MikrotikList ml = context.getBean("mikrotikList", MikrotikList.class);
+
+        for (String l : ml.getIpMikrotikDevices()) {
+
+            System.out.println(l);
+
+        }
+    }
 
 }
