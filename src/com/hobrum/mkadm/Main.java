@@ -1,6 +1,10 @@
 package com.hobrum.mkadm;
 
+import com.hobrum.mkadm.Entity.Device;
 import me.legrange.mikrotik.MikrotikApiException;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
 
 import java.util.Scanner;
 
@@ -9,10 +13,9 @@ public class Main {
     public static void main(String[] args) throws MikrotikApiException {
 
         MikrotikCommand mc = new MikrotikCommand();
-
         boolean isExit = false;
-        
-        while (!isExit) {
+
+       while (!isExit) {
 
             System.out.println("Доступные команды:");
             System.out.println("list - Отобразить список устройств из файла mikrotik.properties.");
@@ -79,6 +82,45 @@ public class Main {
                     System.out.println("Введите ip адрес микротика:");
                     String ipMikrotik = scanner.nextLine();
                     mc.addMacWiFi(macDevice,ipMikrotik);
+
+                case "add":
+                    System.out.println("Сколько?");
+                    int howManyDevice = scanner.nextInt();
+                    //scanner.hasNextInt(howManyDevice);
+
+                    SessionFactory factory = new Configuration()
+                            .configure("hibernate.cfg.xml")
+                            .addAnnotatedClass(Device.class)
+                            .buildSessionFactory();
+            try {
+                Session session = factory.getCurrentSession();
+
+                session.beginTransaction();
+
+                for (int i = 0; i < howManyDevice; i++) {
+
+                    Scanner scanner1 = new Scanner(System.in);
+
+                    System.out.println("ip:");
+                    String ipDevice = scanner1.nextLine();
+
+                    System.out.println("name:");
+                    String nameDevice = scanner1.nextLine();
+
+                    Device dev = new Device(ipDevice, nameDevice);
+                    session.save(dev);
+                    session.getTransaction().commit();
+                }
+
+                System.out.println("Добавлено " + howManyDevice + " устройств(о/а)!");
+
+            }
+            finally {
+
+                factory.close();
+
+            }
+                break;
 
 
                 default:

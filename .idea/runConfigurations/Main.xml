@@ -4,7 +4,7 @@
     <module name="Java_Spring_Project" />
     <extension name="coverage">
       <pattern>
-        <option name="PATTERN" value="com.hobrum.mkadm.*" />
+        <option name="PATTERN" value="com.hobrum.mkadm.Entity.*" />
         <option name="ENABLED" value="true" />
       </pattern>
     </extension>
